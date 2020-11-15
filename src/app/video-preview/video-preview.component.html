@@ -1,0 +1,35 @@
+<div *ngIf="videos.length>0">
+    <mat-card *ngFor="let v of videos"  style="margin:15px;border: black;border-width: 2px;">
+        <div id="container">
+            <div class="row">
+                <div class="col-6">
+                    <video id="my_video_1" class="video-js vjs-default-skin" width="420px" height="230px" controls
+                        preload="none" data-setup='{ "aspectRatio":"400:230", "playbackRates": [ 1.5, 2] }'>
+                        <source src="{{v.videoURL}}" type='video/mp4' />
+                        <!-- <source src="https://vjs.zencdn.net/v/oceans.webm" type='video/webm' /> -->
+                    </video>
+                </div>
+                <div class="col-6">
+                    <table>
+                        <tr *ngIf="v.videoDetails!=null && v.videoDetails.title!=undefined">
+                            Title : {{v.videoDetails.title}}
+                        </tr>
+                        <tr *ngIf="v.videoDetails!=null && v.videoDetails.description!=undefined">
+                            Description : {{v.videoDetails.description}}
+                        </tr>
+                        <tr *ngIf="v.videoDetails!=null && v.videoDetails.size!=undefined">
+                            Size : {{v.videoDetails.size | filesize}}
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </mat-card>
+</div>
+
+<div class="container" style="height: 1000px">
+
+    <h2 style="text-align: center;" *ngIf="videos.length==0">
+        No Content Available. Upload Now!
+    </h2>
+</div>

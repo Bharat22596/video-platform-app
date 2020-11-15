@@ -1,0 +1,34 @@
+<h2>Video Upload</h2>
+<div id="container">
+    <mat-card>
+        <div class="row">
+            <div class="col-6">
+                <div class="container">
+                    <mat-form-field class="row" appearance="fill" style="display: block !important;">
+                        <mat-label>Title</mat-label>
+                        <input matInput placeholder="title" [formControl]="title" required>
+                        <mat-error *ngIf="title.invalid">Please enter valid Title</mat-error>
+                    </mat-form-field>
+                    <mat-form-field class="row" appearance="fill" style="display: block !important;">
+                        <mat-label>Description</mat-label>
+                        <input matInput placeholder="description" [formControl]="description" required>
+                        <mat-error *ngIf="description.invalid">Please enter valid Description</mat-error>
+                    </mat-form-field>
+                    <input type='file' [formControl]="videoInp" required (change)="onSelectFile($event)" />
+                    <!-- <p-fileUpload mode="basic" name="demo[]" accept="video/mp4" maxFileSize="100000000" (onUpload)="onSelectFile($event)"></p-fileUpload> -->
+                </div>
+            </div>
+            <div class="col-6"><video [src]="url" *ngIf="format==='video' && url" height="200" controls></video> <br />
+            </div>
+        </div>
+
+        <div>
+            <mat-error *ngIf="uploadError!=null">{{uploadError}}</mat-error>
+            <mat-error *ngIf="videoFormatError!=null && videoFormatError!=''">{{videoFormatError}}</mat-error>
+            <button mat-flat-button color="primary" class="title-button"
+                *ngIf="uploadError==null && (videoFormatError==null || videoFormatError=='')"
+                (click)="upload()">Upload</button>
+        </div>
+
+    </mat-card>
+</div>

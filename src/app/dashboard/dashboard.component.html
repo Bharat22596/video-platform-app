@@ -1,0 +1,43 @@
+<div>
+  <mat-toolbar color="accent">
+    <button mat-icon-button (click)="toggleMenu()" aria-label="Example icon button with a menu icon">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span style="color:cornsilk">Video Dashboard</span>
+    <div class="spacer"></div>
+    <button mat-flat-button color="primary" class="title-button" (click)="toggleFunction('dashboard')">Dashboard</button>
+    <button mat-flat-button class="title-button" (click)="toggleFunction('upload')">Upload</button>
+  </mat-toolbar>
+</div>
+
+  <mat-sidenav-container style="height: fit-content" >
+
+    <mat-sidenav #sidenav mode="side" [(opened)]="isOpen" style="text-align: center;" *ngIf="AnyContent">
+      <mat-list>
+        <mat-list-item><button mat-flat-button color="secondary" (click)="check()">Settings</button></mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item><button mat-flat-button color="secondary" (click)="check()">Profile</button></mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item ><button mat-flat-button color="secondary" (click)="logout()">Logout</button></mat-list-item>
+      </mat-list>
+    </mat-sidenav>
+
+
+    <mat-sidenav-content>
+        <div class = "container">
+            <app-video-preview></app-video-preview>
+          </div>
+    </mat-sidenav-content>
+
+</mat-sidenav-container>
+
+<div class="container" style="height: 1000px" *ngIf="!AnyContent">
+
+  <h2 style="text-align: center;" >
+      No Content Available. Upload Now!
+  </h2>
+</div>
+
+
+
+
